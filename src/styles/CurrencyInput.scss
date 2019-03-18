@@ -1,0 +1,61 @@
+.currency-input-container {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 30px;
+
+	.currency-input {
+		display: flex;
+		flex-flow: column-reverse;
+		margin-bottom: 1em;
+	}
+
+	input {
+		border: 0;
+		border-bottom: 1px solid #ccc;
+		border-radius: 0;
+		cursor: text;
+		font-family: inherit;
+		font-size: 1.5em;
+		padding-bottom: 20px;
+		-webkit-appearance: none;
+	}
+
+	label {
+		font-size: 12px;
+	}
+
+	label, input {
+		transition: all 0.2s;
+		touch-action: manipulation;
+	}
+
+	input:focus {
+		outline: 0;
+		border-bottom: 1px solid #666;
+	}
+
+	input:placeholder-shown + label {
+		cursor: text;
+		max-width: 66.66%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		transform-origin: left bottom;
+		transform: translate(0, 2.125rem) scale(1.5);
+	}
+
+	::-webkit-input-placeholder {
+		opacity: 0;
+		transition: inherit;
+	}
+
+	input:focus::-webkit-input-placeholder {
+		opacity: 1;
+	}
+
+	input:not(:placeholder-shown) + label,
+	input:focus + label {
+		transform: translate(0, 0) scale(1);
+		cursor: pointer;
+	}
+}

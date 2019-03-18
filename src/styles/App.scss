@@ -1,10 +1,13 @@
 @import "variables";
 
-.App {
-    text-align: center;
+.app {
     font-family: 'Josefin Sans', sans-serif;
-}
+	margin-left: 20px;
+	margin-right: 20px;
 
-.App-header {
-    color: $brand-color;
+    .app-header {
+        color: $brand-color;
+        margin-top: 70px;
+	    text-align: center;
+    }
 }
