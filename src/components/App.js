@@ -2,14 +2,16 @@ import React, {Component} from 'react';
 import '../styles/App.scss';
 
 // component input
-import './CurrencyInput';
+import Header from './Header';
 import CurrencyInput from "./CurrencyInput";
+import Error from './Error';
 
 class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			currencyList: {}
+			currencyList: {},
+			isError: false
 		};
 	}
 
@@ -21,7 +23,7 @@ class App extends Component {
 					this.setState({ currencyList });
 				},
 				(error) => {
-					console.log('error');
+					this.setState({ isError: true });
 				}
 			)
 	}
@@ -29,12 +31,11 @@ class App extends Component {
 	render() {
 		return (
 			<div className="app">
-				<header className="app-header">
-					<h1 className="app-header-main">Currency Converter</h1>
-					<span className="app-header-sub">Easy to go conversions</span>
-				</header>
+				<Header mainText="Currency Converter" subText="Easy to go conversions" />
 
-				<CurrencyInput currencyList={this.state.currencyList} />
+				<div className="app-container-container">
+					{this.state.isError ? <Error /> : <CurrencyInput currencyList={this.state.currencyList} />}
+				</div>
 			</div>
 		);
 	}
