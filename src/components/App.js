@@ -11,7 +11,8 @@ class App extends Component {
 		super();
 		this.state = {
 			currencyList: {},
-			isError: false
+			isError: false,
+			isLoaded: false
 		};
 	}
 
@@ -20,7 +21,10 @@ class App extends Component {
 			.then(res => res.json())
 			.then(
 				(currencyList) => {
-					this.setState({ currencyList });
+					this.setState({
+						currencyList,
+						isLoaded: true
+					});
 				},
 				(error) => {
 					this.setState({ isError: true });
