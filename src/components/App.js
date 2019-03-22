@@ -33,15 +33,31 @@ class App extends Component {
 	}
 
 	render() {
-		return (
-			<div className="app">
-				<Header mainText="Currency Converter" subText="Easy to go conversions" />
+        if(this.state.isLoaded) {
+            return(
+                <div className="app">
+                    <Header mainText="Currency Converter" subText="Easy to go conversions" />
 
-				<div className="app-container-container">
-					{this.state.isError ? <Error /> : <CurrencyInput currencyList={this.state.currencyList} />}
-				</div>
-			</div>
-		);
+                    <div className="app-container-container">
+                        <CurrencyInput currencyList={this.state.currencyList} />
+                    </div>
+			    </div>
+            );
+        } else if (this.state.isError) {
+            return(
+                <div className="app">
+                    <Header mainText="Currency Converter" subText="Easy to go conversions" />
+
+                    <div className="app-container-container">
+                        <Error />
+                    </div>
+                </div>
+            );
+        } else {
+            return(
+                <Header mainText="Currency Converter" subText="Easy to go conversions" />
+            );
+        }
 	}
 }
 
