@@ -1,21 +1,30 @@
 import React from 'react';
 import '../styles/CurrencyInput.scss';
 
+// component imports
+import Option from './Option';
+
 class CurrencyInput extends React.Component {
 	render() {
-		return (
+        const currencyList = this.props.currencyList.results;
+		return(
 			<div className="currency-input-container">
 				<div className="currency-input">
 					<input type="number" placeholder=" " />
 					<label>Enter amount</label>
 				</div>
 
-				{console.log(this.props.currencyList.results)}
-
-				<select>
-					<option value=""></option>
-					<option value="something">something</option>
-				</select>
+                <select>
+                <option value="">Select Currency</option>
+                {Object.keys(currencyList).map(index => (
+                    <Option
+                        key={index}
+                        index={index}
+                        name={currencyList[index].currencyName}
+                        symbol={currencyList[index].currencSymbol}
+                    />
+				))}
+                </select>
 			</div>
 		)
 	}
