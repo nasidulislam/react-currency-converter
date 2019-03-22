@@ -21,7 +21,7 @@ class CurrencyInput extends React.Component {
                         key={index}
                         index={index}
                         name={currencyList[index].currencyName}
-                        symbol={currencyList[index].currencSymbol}
+                        symbol={currencyList[index].id}
                     />
 				))}
                 </select>

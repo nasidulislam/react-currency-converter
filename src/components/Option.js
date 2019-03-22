@@ -3,7 +3,7 @@ import React from 'react';
 class Option extends React.Component {
     render() {
         return(
-            <option>{this.props.name} {this.props.symbol}</option>
+            <option value={this.props.symbol}>{this.props.name}</option>
         )
     }
 }
