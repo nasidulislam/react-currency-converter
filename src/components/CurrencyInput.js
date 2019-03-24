@@ -9,7 +9,7 @@ class CurrencyInput extends React.Component {
         const currencyList = this.props.currencyList.results;
 		return(
 			<div className="currency-input-container">
-				<div className="currency-input">
+				<div className="currency-input" onChange={this.props.handleCurrencyAmountInput}>
 					<input type="number" placeholder="Enter amount" />
 				</div>
 

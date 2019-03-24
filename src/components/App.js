@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import '../styles/App.scss';
 
 // component input
@@ -7,16 +7,15 @@ import CurrencyInput from "./CurrencyInput";
 import Error from './Error';
 import ConversionDisplay from './ConversionDisplay';
 
-class App extends Component {
-	constructor() {
-		super();
-		this.state = {
-			currencyList: {},
-			isError: false,
-			isLoaded: false,
-			selectedCurrency: null
-		};
-	}
+
+class App extends React.Component {
+	state = {
+		currencyList: {},
+		isError: false,
+		isLoaded: false,
+		selectedCurrency: "",
+		currencyAmount: ""
+	};
 
 	componentDidMount() {
 		fetch("https://free.currencyconverterapi.com/api/v6/currencies?apiKey=96625d6e640e0fb52e7a")
@@ -34,17 +33,34 @@ class App extends Component {
 			)
 	}
 
-	handleSelectCurrency(event) {
-		const selectedCurrency = event.target.value;
+	handleSelectCurrency = (event) => {
+		let selectedCurrency = event.target.value;
 
 		this.setState({ selectedCurrency });
+	};
 
-	}
+	handleCurrencyAmountInput = (event) => {
+		let currencyAmount = event.target.value;
 
-	handleSubmit(event) {
+		this.setState({ currencyAmount });
+	};
+
+	handleSubmit = (event) => {
 		event.preventDefault();
-		console.log(event);
-	}
+
+		const amount = this.state.currencyAmount;
+		const currency = this.state.selectedCurrency;
+
+		if(amount === "" && currency === "") {
+			console.log('both undefined');
+		} else if(currency === "") {
+			console.log('currency undefined');
+		} else if(amount === "") {
+			console.log('amount undefined');
+		} else {
+			console.log('all good');
+		}
+	};
 
 	render() {
         if(this.state.isLoaded) {
@@ -56,6 +72,7 @@ class App extends Component {
                         <CurrencyInput
 	                        currencyList={this.state.currencyList}
 	                        handleSelectCurrency={this.handleSelectCurrency}
+	                        handleCurrencyAmountInput={this.handleCurrencyAmountInput}
                         />
 	                    <ConversionDisplay handleSubmit={this.handleSubmit} />
                     </div>
