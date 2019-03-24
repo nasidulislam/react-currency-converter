@@ -5,6 +5,7 @@ import '../styles/App.scss';
 import Header from './Header';
 import CurrencyInput from "./CurrencyInput";
 import Error from './Error';
+import ConversionDisplay from './ConversionDisplay';
 
 class App extends Component {
 	constructor() {
@@ -40,6 +41,7 @@ class App extends Component {
 
                     <div className="app-container-container">
                         <CurrencyInput currencyList={this.state.currencyList} />
+	                    <ConversionDisplay />
                     </div>
 			    </div>
             );
