@@ -13,7 +13,8 @@ class App extends Component {
 		this.state = {
 			currencyList: {},
 			isError: false,
-			isLoaded: false
+			isLoaded: false,
+			selectedCurrency: null
 		};
 	}
 
@@ -33,6 +34,18 @@ class App extends Component {
 			)
 	}
 
+	handleSelectCurrency(event) {
+		const selectedCurrency = event.target.value;
+
+		this.setState({ selectedCurrency });
+
+	}
+
+	handleSubmit(event) {
+		event.preventDefault();
+		console.log(event);
+	}
+
 	render() {
         if(this.state.isLoaded) {
             return(
@@ -40,8 +53,11 @@ class App extends Component {
                     <Header mainText="Currency Converter" subText="Easy to go conversions" />
 
                     <div className="app-container-container">
-                        <CurrencyInput currencyList={this.state.currencyList} />
-	                    <ConversionDisplay />
+                        <CurrencyInput
+	                        currencyList={this.state.currencyList}
+	                        handleSelectCurrency={this.handleSelectCurrency}
+                        />
+	                    <ConversionDisplay handleSubmit={this.handleSubmit} />
                     </div>
 			    </div>
             );

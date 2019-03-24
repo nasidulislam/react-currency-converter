@@ -13,7 +13,7 @@ class CurrencyInput extends React.Component {
 					<input type="number" placeholder="Enter amount" />
 				</div>
 
-                <select className="currency-select-dropdown">
+                <select className="currency-select-dropdown" onChange={this.props.handleSelectCurrency}>
                 <option value="">Select Currency</option>
                 {Object.keys(currencyList).map(index => (
                     <Option
