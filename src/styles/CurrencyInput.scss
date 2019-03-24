@@ -1,62 +1,15 @@
-@import "variables";
-
 .currency-input-container {
 	display: flex;
-	justify-content: space-between;
 
 	.currency-input {
-		display: flex;
-		flex-flow: column-reverse;
-		margin-bottom: 1em;
+		width: 50%;
+
+		input {
+			width: 85%;
+		}
 	}
 
-	input {
-		-webkit-appearance: none;
-		border: 0;
-		border-bottom: 1px solid $grey-1;
-		border-radius: 0;
-		cursor: text;
-		font-family: inherit;
-		font-size: 1.5em;
-		padding-bottom: 20px;
-	}
-
-	label {
-		font-size: 12px;
-	}
-
-	label, input {
-		touch-action: manipulation;
-		transition: all 0.2s;
-	}
-
-	input:focus {
-		border-bottom: 1px solid $light-black-1;
-		outline: 0;
-	}
-
-	input:placeholder-shown + label {
-		cursor: text;
-		max-width: 66.66%;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		transform-origin: left bottom;
-		transform: translate(0, 2.125rem) scale(1.5);
-		white-space: nowrap;
-	}
-
-	::-webkit-input-placeholder {
-		opacity: 0;
-		transition: inherit;
-	}
-
-	input:focus::-webkit-input-placeholder {
-		opacity: 1;
-	}
-
-	input:not(:placeholder-shown) + label,
-	input:focus + label {
-		cursor: pointer;
-		transform: translate(0, 0) scale(1);
+	.currency-select-dropdown {
+		width: 50%;
 	}
 }

@@ -10,11 +10,10 @@ class CurrencyInput extends React.Component {
 		return(
 			<div className="currency-input-container">
 				<div className="currency-input">
-					<input type="number" placeholder=" " />
-					<label>Enter amount</label>
+					<input type="number" placeholder="Enter amount" />
 				</div>
 
-                <select>
+                <select className="currency-select-dropdown">
                 <option value="">Select Currency</option>
                 {Object.keys(currencyList).map(index => (
                     <Option
