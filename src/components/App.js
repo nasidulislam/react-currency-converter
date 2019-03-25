@@ -14,7 +14,9 @@ class App extends React.Component {
 		isError: false,
 		isLoaded: false,
 		selectedCurrency: "",
-		currencyAmount: ""
+		currencyAmount: "",
+        hasSelectedCurrencyError: false,
+        hasCurrencyAmountError: false
 	};
 
 	componentDidMount() {
@@ -52,13 +54,25 @@ class App extends React.Component {
 		const currency = this.state.selectedCurrency;
 
 		if(amount === "" && currency === "") {
-			console.log('both undefined');
+			this.setState({
+                hasSelectedCurrencyError: true,
+                hasCurrencyAmountError: true
+            });
 		} else if(currency === "") {
-			console.log('currency undefined');
+			this.setState({
+                hasSelectedCurrencyError: true,
+                hasCurrencyAmountError: false
+            });
 		} else if(amount === "") {
-			console.log('amount undefined');
+			this.setState({
+                hasSelectedCurrencyError: false,
+                hasCurrencyAmountError: true
+            });
 		} else {
-			console.log('all good');
+			this.setState({
+                hasSelectedCurrencyError: false,
+                hasCurrencyAmountError: false
+            });
 		}
 	};
 
