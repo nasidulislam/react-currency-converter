@@ -11,12 +11,11 @@ import ConversionDisplay from './ConversionDisplay';
 class App extends React.Component {
 	state = {
 		currencyList: {},
-		isError: false,
-		isLoaded: false,
+		hasCurrencyFetchError: false,
+		hasCurrencyLoaded: false,
 		selectedCurrency: "",
 		currencyAmount: "",
-        hasSelectedCurrencyError: false,
-        hasCurrencyAmountError: false
+        inputErrorType: ""
 	};
 
 	componentDidMount() {
@@ -26,11 +25,11 @@ class App extends React.Component {
 				(currencyList) => {
 					this.setState({
 						currencyList,
-						isLoaded: true
+						hasCurrencyLoaded: true
 					});
 				},
 				(error) => {
-					this.setState({ isError: true });
+					this.setState({ hasCurrencyFetchError: true });
 				}
 			)
 	}
@@ -54,30 +53,18 @@ class App extends React.Component {
 		const currency = this.state.selectedCurrency;
 
 		if(amount === "" && currency === "") {
-			this.setState({
-                hasSelectedCurrencyError: true,
-                hasCurrencyAmountError: true
-            });
+			this.setState({ inputErrorType: "amount-and-currency" });
 		} else if(currency === "") {
-			this.setState({
-                hasSelectedCurrencyError: true,
-                hasCurrencyAmountError: false
-            });
+			this.setState({ inputErrorType: "currency" });
 		} else if(amount === "") {
-			this.setState({
-                hasSelectedCurrencyError: false,
-                hasCurrencyAmountError: true
-            });
+			this.setState({ inputErrorType: "amount" });
 		} else {
-			this.setState({
-                hasSelectedCurrencyError: false,
-                hasCurrencyAmountError: false
-            });
+			this.setState({ inputErrorType: "" });
 		}
 	};
 
 	render() {
-        if(this.state.isLoaded) {
+        if(this.state.hasCurrencyLoaded) {
             return(
                 <div className="app">
                     <Header mainText="Currency Converter" subText="Easy to go conversions" />
@@ -87,12 +74,13 @@ class App extends React.Component {
 	                        currencyList={this.state.currencyList}
 	                        handleSelectCurrency={this.handleSelectCurrency}
 	                        handleCurrencyAmountInput={this.handleCurrencyAmountInput}
+                            inputErrorType={this.state.inputErrorType}
                         />
 	                    <ConversionDisplay handleSubmit={this.handleSubmit} />
                     </div>
 			    </div>
             );
-        } else if (this.state.isError) {
+        } else if (this.state.hasCurrencyFetchError) {
             return(
                 <div className="app">
                     <Header mainText="Currency Converter" subText="Easy to go conversions" />
