@@ -1,7 +1,9 @@
 @import "variables";
 
 .currency-input-container {
-	display: flex;
+	.input-and-dropdown {
+        display: flex;
+    }
 
 	.currency-input {
 		width: 50%;

@@ -13,9 +13,10 @@ class App extends React.Component {
 		currencyList: {},
 		hasCurrencyFetchError: false,
 		hasCurrencyLoaded: false,
-		selectedCurrency: "",
-		currencyAmount: "",
-        inputErrorType: ""
+        fromCurrencyValue: "",
+        toCurrencyValue: "",
+        fromCurrencyType: "",
+        ToCurrencyType: "",
 	};
 
 	componentDidMount() {
@@ -34,33 +35,32 @@ class App extends React.Component {
 			)
 	}
 
-	handleSelectCurrency = (event) => {
-		let selectedCurrency = event.target.value;
+    handleFromCurrencyValue = (event) => {
+        let fromCurrencyValue = event.target.value;
 
-		this.setState({ selectedCurrency });
+        this.setState({ fromCurrencyValue });
+    };
+
+	handleToCurrencyValue = (event) => {
+		let toCurrencyValue = event.target.value;
+
+        this.setState({ toCurrencyValue });
 	};
 
-	handleCurrencyAmountInput = (event) => {
-		let currencyAmount = event.target.value;
+	handleFromCurrencyType = (event) => {
+		let fromCurrencyType = event.target.value;
 
-		this.setState({ currencyAmount });
+        this.setState({ fromCurrencyType });
 	};
+
+    handleToCurrencyType = (event) => {
+        let ToCurrencyType = event.target.value;
+
+        this.setState({ ToCurrencyType });
+    }
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-
-		const amount = this.state.currencyAmount;
-		const currency = this.state.selectedCurrency;
-
-		if(amount === "" && currency === "") {
-			this.setState({ inputErrorType: "amount-and-currency" });
-		} else if(currency === "") {
-			this.setState({ inputErrorType: "currency" });
-		} else if(amount === "") {
-			this.setState({ inputErrorType: "amount" });
-		} else {
-			this.setState({ inputErrorType: "" });
-		}
 	};
 
 	render() {
@@ -71,11 +71,21 @@ class App extends React.Component {
 
                     <div className="app-container-container">
                         <CurrencyInput
+                            headerText="From"
 	                        currencyList={this.state.currencyList}
-	                        handleSelectCurrency={this.handleSelectCurrency}
-	                        handleCurrencyAmountInput={this.handleCurrencyAmountInput}
+	                        handleSelectCurrency={this.handleFromCurrencyType}
+	                        handleCurrencyAmountInput={this.handleFromCurrencyValue}
                             inputErrorType={this.state.inputErrorType}
                         />
+
+                        <CurrencyInput
+                            headerText="To"
+	                        currencyList={this.state.currencyList}
+	                        handleSelectCurrency={this.handleToCurrencyType}
+	                        handleCurrencyAmountInput={this.handleToCurrencyValue}
+                            inputErrorType={this.state.inputErrorType}
+                        />
+
 	                    <ConversionDisplay handleSubmit={this.handleSubmit} />
                     </div>
 			    </div>
