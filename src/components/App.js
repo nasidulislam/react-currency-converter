@@ -7,7 +7,6 @@ import CurrencyInput from "./CurrencyInput";
 import Error from './Error';
 import ConversionDisplay from './ConversionDisplay';
 
-
 class App extends React.Component {
 	state = {
 		currencyList: {},
@@ -61,36 +60,38 @@ class App extends React.Component {
         this.setState({ ToCurrencyType });
     }
 
-	handleSubmit = (event) => {
-		event.preventDefault();
-
-        // handle FROM input sets
-        const fromCurrencyValue = this.state.fromCurrencyValue;
-        const fromCurrencyType = this.state.fromCurrencyType;
-
-        if(fromCurrencyValue === "" && fromCurrencyType === "") {
+    validateFromInputSet = (amount, type) => {
+        if(amount === "" && type === "") {
 			this.setState({ fromErrorType: "amount-and-currency" });
-		} else if(fromCurrencyType === "") {
+		} else if(type === "") {
 			this.setState({ fromErrorType: "currency" });
-		} else if(fromCurrencyValue === "") {
+		} else if(amount === "") {
 			this.setState({ fromErrorType: "amount" });
 		} else {
 			this.setState({ fromErrorType: "" });
 		}
+    };
 
-        // handle TO input sets
-        const toCurrencyValue = this.state.toCurrencyValue;
-        const ToCurrencyType = this.state.ToCurrencyType;
-
-        if(toCurrencyValue === "" && ToCurrencyType === "") {
+    validateToInputSet = (amount, type) => {
+        if(amount === "" && type === "") {
 			this.setState({ toErrorType: "amount-and-currency" });
-		} else if(ToCurrencyType === "") {
+		} else if(type === "") {
 			this.setState({ toErrorType: "currency" });
-		} else if(toCurrencyValue === "") {
+		} else if(amount === "") {
 			this.setState({ toErrorType: "amount" });
 		} else {
 			this.setState({ toErrorType: "" });
 		}
+    };
+
+	handleSubmit = (event) => {
+		event.preventDefault();
+
+        // handle FROM input sets
+        this.validateFromInputSet(this.state.fromCurrencyValue, this.state.fromCurrencyType);
+
+        // handle TO input sets
+        this.validateToInputSet(this.state.toCurrencyValue, this.state.ToCurrencyType);
 	};
 
 	render() {
