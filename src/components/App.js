@@ -17,6 +17,8 @@ class App extends React.Component {
         toCurrencyValue: "",
         fromCurrencyType: "",
         ToCurrencyType: "",
+        fromErrorType: "",
+        toErrorType: ""
 	};
 
 	componentDidMount() {
@@ -61,6 +63,34 @@ class App extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
+
+        // handle FROM input sets
+        const fromCurrencyValue = this.state.fromCurrencyValue;
+        const fromCurrencyType = this.state.fromCurrencyType;
+
+        if(fromCurrencyValue === "" && fromCurrencyType === "") {
+			this.setState({ fromErrorType: "amount-and-currency" });
+		} else if(fromCurrencyType === "") {
+			this.setState({ fromErrorType: "currency" });
+		} else if(fromCurrencyValue === "") {
+			this.setState({ fromErrorType: "amount" });
+		} else {
+			this.setState({ fromErrorType: "" });
+		}
+
+        // handle TO input sets
+        const toCurrencyValue = this.state.toCurrencyValue;
+        const ToCurrencyType = this.state.ToCurrencyType;
+
+        if(toCurrencyValue === "" && ToCurrencyType === "") {
+			this.setState({ toErrorType: "amount-and-currency" });
+		} else if(ToCurrencyType === "") {
+			this.setState({ toErrorType: "currency" });
+		} else if(toCurrencyValue === "") {
+			this.setState({ toErrorType: "amount" });
+		} else {
+			this.setState({ toErrorType: "" });
+		}
 	};
 
 	render() {
@@ -75,7 +105,7 @@ class App extends React.Component {
 	                        currencyList={this.state.currencyList}
 	                        handleSelectCurrency={this.handleFromCurrencyType}
 	                        handleCurrencyAmountInput={this.handleFromCurrencyValue}
-                            inputErrorType={this.state.inputErrorType}
+                            inputErrorType={this.state.fromErrorType}
                         />
 
                         <CurrencyInput
@@ -83,7 +113,7 @@ class App extends React.Component {
 	                        currencyList={this.state.currencyList}
 	                        handleSelectCurrency={this.handleToCurrencyType}
 	                        handleCurrencyAmountInput={this.handleToCurrencyValue}
-                            inputErrorType={this.state.inputErrorType}
+                            inputErrorType={this.state.toErrorType}
                         />
 
 	                    <ConversionDisplay handleSubmit={this.handleSubmit} />
