@@ -15,9 +15,10 @@ class App extends React.Component {
         fromCurrencyValue: "",
         toCurrencyValue: "",
         fromCurrencyType: "",
-        ToCurrencyType: "",
+        toCurrencyType: "",
         fromErrorType: "",
-        toErrorType: ""
+        toErrorType: "",
+        convertedValue: ""
 	};
 
 	componentDidMount() {
@@ -55,43 +56,70 @@ class App extends React.Component {
 	};
 
     handleToCurrencyType = (event) => {
-        let ToCurrencyType = event.target.value;
+        let toCurrencyType = event.target.value;
 
-        this.setState({ ToCurrencyType });
+        this.setState({ toCurrencyType });
     }
 
     validateFromInputSet = (amount, type) => {
         if(amount === "" && type === "") {
 			this.setState({ fromErrorType: "amount-and-currency" });
+            return false;
 		} else if(type === "") {
 			this.setState({ fromErrorType: "currency" });
+            return false;
 		} else if(amount === "") {
 			this.setState({ fromErrorType: "amount" });
+            return false;
 		} else {
 			this.setState({ fromErrorType: "" });
+            return true;
 		}
     };
 
     validateToInputSet = (amount, type) => {
         if(amount === "" && type === "") {
 			this.setState({ toErrorType: "amount-and-currency" });
+            return false;
 		} else if(type === "") {
 			this.setState({ toErrorType: "currency" });
+            return false;
 		} else if(amount === "") {
 			this.setState({ toErrorType: "amount" });
+            return false;
 		} else {
 			this.setState({ toErrorType: "" });
+            return true;
 		}
     };
 
 	handleSubmit = (event) => {
 		event.preventDefault();
+        const fromCurrencyValue = this.state.fromCurrencyValue;
+        const fromCurrencyType = this.state.fromCurrencyType;
+
+        const toCurrencyValue = this.state.toCurrencyValue;
+        const toCurrencyType = this.state.toCurrencyType;
 
         // handle FROM input sets
-        this.validateFromInputSet(this.state.fromCurrencyValue, this.state.fromCurrencyType);
+        var isfromInputSetValid = this.validateFromInputSet(fromCurrencyValue, fromCurrencyType);
 
         // handle TO input sets
-        this.validateToInputSet(this.state.toCurrencyValue, this.state.ToCurrencyType);
+        var isToInputSetValid = this.validateToInputSet(toCurrencyValue, toCurrencyType);
+
+        if(isfromInputSetValid && isToInputSetValid) {
+            const query = "https://free.currencyconverterapi.com/api/v6/convert?q=" + fromCurrencyType + "_" + toCurrencyType  + "&compact=ultra&apiKey=96625d6e640e0fb52e7a";
+
+            fetch(query)
+                .then(res => res.json())
+                .then(
+                    (convertedValue) => {
+					    this.setState({ convertedValue });
+                    },
+
+                    (error) => { console.log('error'); }
+			)
+        }
 	};
 
 	render() {
