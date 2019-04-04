@@ -6,14 +6,17 @@ import Button from './Button';
 
 class ConversionDisplay extends React.Component {
     handleConvertedValue = () => {
-        if(this.props.convertedValue !== 'undefined') {
-            let convertedValue = this.props.convertedValue[Object.keys(this.props.convertedValue)];
+        let convertedValueProp = this.props.convertedValue;
+
+        if(convertedValueProp !== "") {
+            let convertedValue = convertedValueProp[Object.keys(convertedValueProp)];
             let fromCurrencyValue = this.props.fromCurrencyValue;
             let fromCurrencyType = this.props.fromCurrencyType;
+            let toCurrencyType = this.props.toCurrencyType;
 
 
-            let totalConvertedValue = convertedValue * fromCurrencyValue;
-            let returnText = `${fromCurrencyValue} ${fromCurrencyType} is equal to ${totalConvertedValue}`;
+            let totalConvertedValue = parseInt(convertedValue * fromCurrencyValue);
+            let returnText = `${fromCurrencyValue} ${fromCurrencyType} is equal to ${totalConvertedValue} ${toCurrencyType}`;
 
             return returnText;
         }
@@ -26,7 +29,7 @@ class ConversionDisplay extends React.Component {
 				        buttonText="Convert"
 				        buttonType="submit"
 				/>
-				<div>{this.handleConvertedValue()}</div>
+				<div className="display">{this.handleConvertedValue()}</div>
 			</div>
 		)
 	}

@@ -145,7 +145,7 @@ class App extends React.Component {
                             handleSubmit={this.handleSubmit}
                             fromCurrencyType={this.state.fromCurrencyType}
                             toCurrencyType={this.state.toCurrencyType}
-                            fromCurrencyType={this.state.fromCurrencyType}
+                            fromCurrencyValue={this.state.fromCurrencyValue}
                             convertedValue={this.state.convertedValue}
                         />
                     </div>
