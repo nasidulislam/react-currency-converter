@@ -141,7 +141,13 @@ class App extends React.Component {
                             />
                         </div>
 
-	                    <ConversionDisplay handleSubmit={this.handleSubmit} />
+	                    <ConversionDisplay
+                            handleSubmit={this.handleSubmit}
+                            fromCurrencyType={this.state.fromCurrencyType}
+                            toCurrencyType={this.state.toCurrencyType}
+                            fromCurrencyType={this.state.fromCurrencyType}
+                            convertedValue={this.state.convertedValue}
+                        />
                     </div>
 			    </div>
             );
