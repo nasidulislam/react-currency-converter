@@ -2,8 +2,8 @@ import React from 'react';
 import '../styles/CurrencyInput.scss';
 
 // component imports
-import Option from './Option';
 import InputField from './InputField';
+import CurrencyListDropdown from './CurrencyListDropdown';
 
 class CurrencyInput extends React.Component {
 	render() {
@@ -20,17 +20,13 @@ class CurrencyInput extends React.Component {
                         placeholderText="Enter Amount"
                     />
 
-                    <select className="currency-select-dropdown" onChange={this.props.handleSelectCurrency}>
-                    <option value="">Select Currency</option>
-                    {Object.keys(currencyList).map(index => (
-                        <Option
-                            key={index}
-                            index={index}
-                            name={currencyList[index].currencyName}
-                            symbol={currencyList[index].id}
-                        />
-                    ))}
-                    </select>
+                    <CurrencyListDropdown
+                        containerClassList="from-dropdown"
+                        dropdownClassList="currency-select-dropdown"
+                        onChangeHandler={this.props.handleSelectCurrency}
+                        unselectedText="Select Currency"
+                        theList={currencyList}
+                    />
                 </div>
 			</div>
 		)

@@ -8,4 +8,10 @@
 	.app-container-container {
 		margin-top: 30px;
 	}
+
+    .to-input-set-container[data-invalid-type="currency"] {
+        .currency-select-dropdown {
+            border: 1px solid $error-1;
+        }
+    }
 }

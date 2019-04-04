@@ -6,6 +6,7 @@ import Header from './Header';
 import CurrencyInput from "./CurrencyInput";
 import Error from './Error';
 import ConversionDisplay from './ConversionDisplay';
+import CurrencyListDropdown from './CurrencyListDropdown';
 
 class App extends React.Component {
 	state = {
@@ -13,7 +14,6 @@ class App extends React.Component {
 		hasCurrencyFetchError: false,
 		hasCurrencyLoaded: false,
         fromCurrencyValue: "",
-        toCurrencyValue: "",
         fromCurrencyType: "",
         toCurrencyType: "",
         fromErrorType: "",
@@ -77,15 +77,9 @@ class App extends React.Component {
 		}
     };
 
-    validateToInputSet = (amount, type) => {
-        if(amount === "" && type === "") {
-			this.setState({ toErrorType: "amount-and-currency" });
-            return false;
-		} else if(type === "") {
+    validateToInputSet = (type) => {
+        if(type === "") {
 			this.setState({ toErrorType: "currency" });
-            return false;
-		} else if(amount === "") {
-			this.setState({ toErrorType: "amount" });
             return false;
 		} else {
 			this.setState({ toErrorType: "" });
@@ -98,14 +92,13 @@ class App extends React.Component {
         const fromCurrencyValue = this.state.fromCurrencyValue;
         const fromCurrencyType = this.state.fromCurrencyType;
 
-        const toCurrencyValue = this.state.toCurrencyValue;
         const toCurrencyType = this.state.toCurrencyType;
 
         // handle FROM input sets
         var isfromInputSetValid = this.validateFromInputSet(fromCurrencyValue, fromCurrencyType);
 
         // handle TO input sets
-        var isToInputSetValid = this.validateToInputSet(toCurrencyValue, toCurrencyType);
+        var isToInputSetValid = this.validateToInputSet(toCurrencyType);
 
         if(isfromInputSetValid && isToInputSetValid) {
             const query = "https://free.currencyconverterapi.com/api/v6/convert?q=" + fromCurrencyType + "_" + toCurrencyType  + "&compact=ultra&apiKey=96625d6e640e0fb52e7a";
@@ -137,13 +130,16 @@ class App extends React.Component {
                             inputErrorType={this.state.fromErrorType}
                         />
 
-                        <CurrencyInput
-                            headerText="To"
-	                        currencyList={this.state.currencyList}
-	                        handleSelectCurrency={this.handleToCurrencyType}
-	                        handleCurrencyAmountInput={this.handleToCurrencyValue}
-                            inputErrorType={this.state.toErrorType}
-                        />
+                        <div className="to-input-set-container" data-invalid-type={this.state.toErrorType}>
+                            <h3>To</h3>
+                            <CurrencyListDropdown
+                                containerClassList="to-dropdown"
+                                dropdownClassList="currency-select-dropdown"
+                                onChangeHandler={this.handleToCurrencyType}
+                                unselectedText="Select Currency"
+                                theList={this.state.currencyList.results}
+                            />
+                        </div>
 
 	                    <ConversionDisplay handleSubmit={this.handleSubmit} />
                     </div>
