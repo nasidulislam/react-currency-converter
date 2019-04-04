@@ -3,6 +3,7 @@ import '../styles/CurrencyInput.scss';
 
 // component imports
 import Option from './Option';
+import InputField from './InputField';
 
 class CurrencyInput extends React.Component {
 	render() {
@@ -12,9 +13,12 @@ class CurrencyInput extends React.Component {
                 <h3>{this.props.headerText}</h3>
 
 				<div className="input-and-dropdown">
-                    <div className="currency-input" onChange={this.props.handleCurrencyAmountInput}>
-                        <input type="number" placeholder="Enter amount" />
-                    </div>
+                    <InputField
+                        containerClassList="currency-input"
+                        onChangeHandler={this.props.handleCurrencyAmountInput}
+                        inputFieldType="number"
+                        placeholderText="Enter Amount"
+                    />
 
                     <select className="currency-select-dropdown" onChange={this.props.handleSelectCurrency}>
                     <option value="">Select Currency</option>
