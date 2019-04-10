@@ -1,0 +1,11 @@
+@import "variables";
+
+.button-container {
+    text-align: center;
+
+    .button {
+        background-color: $orange;
+        border-radius: 20px;
+        width: 40%;
+    }
+}

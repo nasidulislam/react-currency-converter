@@ -2,32 +2,24 @@
 
 .currency-input-container {
 	.input-and-dropdown {
-        display: flex;
+        margin-top: 20px;
     }
 
-	.currency-input {
-		width: 50%;
-
-		input {
-			width: 85%;
-		}
-	}
-
-	.currency-select-dropdown {
-		width: 50%;
+	.from-dropdown {
+		margin-top: 15px;
 	}
 
     // error styles when amount input is invalid
     &[data-invalid-type="amount"] {
         .currency-input {
-            border: 1px solid $error-1;
+            @include input-error;
         }
     }
 
     // error styles when currency select is invalid
     &[data-invalid-type="currency"] {
         .currency-select-dropdown {
-            border: 1px solid $error-1;
+            @include input-error;
         }
     }
 
@@ -35,7 +27,7 @@
     &[data-invalid-type="amount-and-currency"] {
         .currency-input,
         .currency-select-dropdown {
-            border: 1px solid $error-1;
+            @include input-error;
         }
     }
 }
