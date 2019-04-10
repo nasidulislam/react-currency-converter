@@ -12,3 +12,12 @@ $light-black-1: #666;
 
 // error colors
 $error-1: #dc3545;
+
+// breakpoints
+$desktop: 720px;
+
+// mixins
+
+@mixin input-error {
+    border: 3px solid $error-1;
+}

@@ -12,14 +12,14 @@
     // error styles when amount input is invalid
     &[data-invalid-type="amount"] {
         .currency-input {
-            border: 1px solid $error-1;
+            @include input-error;
         }
     }
 
     // error styles when currency select is invalid
     &[data-invalid-type="currency"] {
         .currency-select-dropdown {
-            border: 1px solid $error-1;
+            @include input-error;
         }
     }
 
@@ -27,7 +27,7 @@
     &[data-invalid-type="amount-and-currency"] {
         .currency-input,
         .currency-select-dropdown {
-            border: 1px solid $error-1;
+            @include input-error;
         }
     }
 }

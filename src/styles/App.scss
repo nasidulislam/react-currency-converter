@@ -32,12 +32,12 @@
 
     .to-input-set-container[data-invalid-type="currency"] {
         .currency-select-dropdown {
-            border: 1px solid $error-1;
+            @include input-error;
         }
     }
 }
 
-@media (min-width: 720px) {
+@media (min-width: $desktop) {
     .app-container-container {
         margin: 0 auto;
         width: 50%;
