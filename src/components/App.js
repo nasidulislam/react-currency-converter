@@ -1,6 +1,9 @@
 import React from 'react';
 import '../styles/App.scss';
 
+// other imports
+import '../styles/reset.scss';
+
 // component input
 import Header from './Header';
 import CurrencyInput from "./CurrencyInput";

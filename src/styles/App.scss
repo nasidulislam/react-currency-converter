@@ -1,13 +1,16 @@
 @import "variables";
 
 .app {
+    background: -webkit-linear-gradient(to top, #243B55, #141E30);
+    background: linear-gradient(to top, #243B55, #141E30);
     font-family: 'Josefin Sans', sans-serif;
-	margin-left: 20px;
-	margin-right: 20px;
+    height: 100vh;
+    padding-left: 20px;
+    padding-right: 20px;
 
-	.app-container-container {
-		margin-top: 30px;
-	}
+    .app-container-container {
+        margin-top: 50px;
+    }
 
     .to-input-set-container[data-invalid-type="currency"] {
         .currency-select-dropdown {
