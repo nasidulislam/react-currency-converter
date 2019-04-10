@@ -36,3 +36,10 @@
         }
     }
 }
+
+@media (min-width: 720px) {
+    .app-container-container {
+        margin: 0 auto;
+        width: 50%;
+    }
+}
