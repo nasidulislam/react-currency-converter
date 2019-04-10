@@ -12,7 +12,7 @@ class ConversionDisplay extends React.Component {
             let toCurrencyType = this.props.toCurrencyType;
 
 
-            let totalConvertedValue = parseFloat(convertedValue * fromCurrencyValue);
+            let totalConvertedValue = parseFloat(convertedValue * fromCurrencyValue).toFixed(3);
             let returnText = `${fromCurrencyValue} ${fromCurrencyType} is equal to ${totalConvertedValue} ${toCurrencyType}`;
 
             return returnText;
