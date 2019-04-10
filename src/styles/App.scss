@@ -28,6 +28,11 @@
 		height: 40px;
 		padding-left: 10px;
 		width: 100%;
+
+        &:focus {
+            outline: 1px $white dotted;
+            outline-offset: 4px;
+        }
 	}
 
     .to-input-set-container[data-invalid-type="currency"] {
