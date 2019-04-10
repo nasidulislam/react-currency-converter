@@ -4,7 +4,7 @@ import '../styles/Button.scss';
 class Button extends React.Component {
 	render() {
 		return(
-			<div className="button-container">
+			<div className="button-container" onClick={this.props.onCickHandler}>
 				<button
 					className={this.props.buttonClass}
 					type={this.props.buttonType}

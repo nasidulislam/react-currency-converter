@@ -7,6 +7,7 @@ import CurrencyInput from "./CurrencyInput";
 import Error from './Error';
 import ConversionDisplay from './ConversionDisplay';
 import CurrencyListDropdown from './CurrencyListDropdown';
+import Button from './Button';
 
 class App extends React.Component {
 	state = {
@@ -18,7 +19,8 @@ class App extends React.Component {
         toCurrencyType: "",
         fromErrorType: "",
         toErrorType: "",
-        convertedValue: ""
+        convertedValue: "",
+		renderConvertedValue: false
 	};
 
 	componentDidMount() {
@@ -43,46 +45,64 @@ class App extends React.Component {
         this.setState({ fromCurrencyValue });
     };
 
-	handleToCurrencyValue = (event) => {
-		let toCurrencyValue = event.target.value;
-
-        this.setState({ toCurrencyValue });
-	};
-
 	handleFromCurrencyType = (event) => {
 		let fromCurrencyType = event.target.value;
 
-        this.setState({ fromCurrencyType });
+        this.setState({
+			fromCurrencyType,
+			renderConvertedValue: false
+		});
 	};
 
     handleToCurrencyType = (event) => {
         let toCurrencyType = event.target.value;
 
-        this.setState({ toCurrencyType });
+        this.setState({
+			toCurrencyType,
+			renderConvertedValue: false
+		});
     }
 
     validateFromInputSet = (amount, type) => {
         if(amount === "" && type === "") {
-			this.setState({ fromErrorType: "amount-and-currency" });
+			this.setState({
+				fromErrorType: "amount-and-currency",
+				renderConvertedValue: false
+			});
             return false;
 		} else if(type === "") {
-			this.setState({ fromErrorType: "currency" });
+			this.setState({
+				fromErrorType: "currency",
+				renderConvertedValue: false
+			});
             return false;
 		} else if(amount === "") {
-			this.setState({ fromErrorType: "amount" });
+			this.setState({
+				fromErrorType: "amount",
+				renderConvertedValue: false
+			});
             return false;
 		} else {
-			this.setState({ fromErrorType: "" });
+			this.setState({
+				fromErrorType: "",
+				renderConvertedValue: true
+			});
             return true;
 		}
     };
 
     validateToInputSet = (type) => {
         if(type === "") {
-			this.setState({ toErrorType: "currency" });
+			this.setState({
+				toErrorType: "currency",
+				renderConvertedValue: false
+			});
             return false;
 		} else {
-			this.setState({ toErrorType: "" });
+			this.setState({
+				toErrorType: "",
+				renderConvertedValue: true
+			});
             return true;
 		}
     };
@@ -141,12 +161,19 @@ class App extends React.Component {
                             />
                         </div>
 
+						<Button
+							buttonClass="button primary-button conversion-submit-button"
+							buttonText="Convert"
+							buttonType="submit"
+							onCickHandler={this.handleSubmit}
+						/>
+
 	                    <ConversionDisplay
-                            handleSubmit={this.handleSubmit}
-                            fromCurrencyType={this.state.fromCurrencyType}
-                            toCurrencyType={this.state.toCurrencyType}
-                            fromCurrencyValue={this.state.fromCurrencyValue}
-                            convertedValue={this.state.convertedValue}
+							fromCurrencyType={this.state.fromCurrencyType}
+							toCurrencyType={this.state.toCurrencyType}
+							fromCurrencyValue={this.state.fromCurrencyValue}
+							convertedValue={this.state.convertedValue}
+							renderConvertedValue={this.state.renderConvertedValue}
                         />
                     </div>
 			    </div>

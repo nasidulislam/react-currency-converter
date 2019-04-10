@@ -1,9 +1,6 @@
 import React from 'react';
 import '../styles/ConversionDisplay.scss';
 
-// component imports
-import Button from './Button';
-
 class ConversionDisplay extends React.Component {
     handleConvertedValue = () => {
         let convertedValueProp = this.props.convertedValue;
@@ -15,7 +12,7 @@ class ConversionDisplay extends React.Component {
             let toCurrencyType = this.props.toCurrencyType;
 
 
-            let totalConvertedValue = parseInt(convertedValue * fromCurrencyValue);
+            let totalConvertedValue = parseFloat(convertedValue * fromCurrencyValue);
             let returnText = `${fromCurrencyValue} ${fromCurrencyType} is equal to ${totalConvertedValue} ${toCurrencyType}`;
 
             return returnText;
@@ -23,15 +20,15 @@ class ConversionDisplay extends React.Component {
     }
 
 	render() {
-		return(
-			<div className="submit-and-display-container" onClick={this.props.handleSubmit}>
-				<Button buttonClass="button primary-button conversion-submit-button"
-				        buttonText="Convert"
-				        buttonType="submit"
-				/>
-				<div className="display">{this.handleConvertedValue()}</div>
-			</div>
-		)
+        if(this.props.renderConvertedValue) {
+            return(
+                <div className="submit-and-display-container">
+                    <div className="display">{this.handleConvertedValue()}</div>
+                </div>
+            )
+        } else {
+            return null
+        }
 	}
 }
 
