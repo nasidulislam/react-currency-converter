@@ -2,20 +2,11 @@
 
 .currency-input-container {
 	.input-and-dropdown {
-        display: flex;
-		margin-top: 20px;
+        margin-top: 20px;
     }
 
-	.currency-input {
-		width: 50%;
-
-		input {
-			width: 85%;
-		}
-	}
-
-	.currency-select-dropdown {
-		width: 50%;
+	.from-dropdown {
+		margin-top: 15px;
 	}
 
     // error styles when amount input is invalid

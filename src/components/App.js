@@ -45,7 +45,9 @@ class App extends React.Component {
     handleFromCurrencyValue = (event) => {
         let fromCurrencyValue = event.target.value;
 
-        this.setState({ fromCurrencyValue });
+		if(fromCurrencyValue > 0) {
+			this.setState({ fromCurrencyValue });
+		}
     };
 
 	handleFromCurrencyType = (event) => {

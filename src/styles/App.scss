@@ -24,6 +24,12 @@
         margin-top: 20px;
     }
 
+    input, select {
+		height: 40px;
+		padding-left: 10px;
+		width: 100%;
+	}
+
     .to-input-set-container[data-invalid-type="currency"] {
         .currency-select-dropdown {
             border: 1px solid $error-1;

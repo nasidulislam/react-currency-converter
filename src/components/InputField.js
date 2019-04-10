@@ -8,6 +8,7 @@ class InputField extends React.Component {
                     className={this.props.inputFieldClassList}
                     type={this.props.inputFieldType}
                     placeholder={this.props.placeholderText}
+                    min="0"
                 />
             </div>
         )
