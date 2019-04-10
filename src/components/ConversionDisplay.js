@@ -22,7 +22,7 @@ class ConversionDisplay extends React.Component {
 	render() {
         if(this.props.renderConvertedValue) {
             return(
-                <div className="submit-and-display-container">
+                <div className="submit-and-display-container structure">
                     <div className="display">{this.handleConvertedValue()}</div>
                 </div>
             )

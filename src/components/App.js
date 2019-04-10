@@ -153,8 +153,8 @@ class App extends React.Component {
                             inputErrorType={this.state.fromErrorType}
                         />
 
-                        <div className="to-input-set-container" data-invalid-type={this.state.toErrorType}>
-                            <h3>To</h3>
+                        <div className="to-input-set-container structure" data-invalid-type={this.state.toErrorType}>
+                            <h3 className="component-header">To</h3>
                             <CurrencyListDropdown
                                 containerClassList="to-dropdown"
                                 dropdownClassList="currency-select-dropdown"

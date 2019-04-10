@@ -9,8 +9,8 @@ class CurrencyInput extends React.Component {
 	render() {
         const currencyList = this.props.currencyList.results;
 		return(
-			<div className="currency-input-container" data-invalid-type={this.props.inputErrorType}>
-                <h3>{this.props.headerText}</h3>
+			<div className="currency-input-container structure" data-invalid-type={this.props.inputErrorType}>
+				<h3 className="component-header">{this.props.headerText}</h3>
 
 				<div className="input-and-dropdown">
                     <InputField

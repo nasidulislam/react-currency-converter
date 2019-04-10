@@ -1,7 +1,16 @@
 @import "variables";
 
 .app-header {
-	color: $brand-color;
+	color: $white;
 	padding-top: 40px;
 	text-align: center;
+
+	.app-header-main {
+		font-size: 25px;
+	}
+
+	.app-header-sub {
+		display: block;
+		margin-top: 10px;
+	}
 }

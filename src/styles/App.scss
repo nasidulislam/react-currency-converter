@@ -12,6 +12,18 @@
         margin-top: 50px;
     }
 
+    .component-header {
+		color: $white;
+	}
+
+    .structure {
+        margin-top: 50px;
+    }
+
+    .to-dropdown {
+        margin-top: 20px;
+    }
+
     .to-input-set-container[data-invalid-type="currency"] {
         .currency-select-dropdown {
             border: 1px solid $error-1;
